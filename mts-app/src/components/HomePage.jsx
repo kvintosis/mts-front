@@ -2,12 +2,13 @@
 
 import React from 'react';
 
+
 function HomePage() {
 
     return (
         <div className="home__container">
             <div className="home__btn-container">
-                <button className="home__btn">Конвертировать</button>
+                <button className="home__btn">добавить файл</button>
             </div>
         </div>
     )
