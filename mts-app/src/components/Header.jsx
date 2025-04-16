@@ -12,21 +12,12 @@ function Header() {
                     <span>logotip</span>
                 </div>
 
-                <nav className="page-header__nav">
-                    <ul className="page-header__menu">
-                        <li className="page-header__menu-item">
-                            <a href="/" className="page-header__link">1</a>
-                        </li>
-                        <li className="page-header__menu-item">
-                            <a href="/" className="page-header__link">2</a>
-                        </li>
-                        <li className="page-header__menu-item">
-                            <a href="/" className="page-header__link">3</a>
-                        </li>
-                    </ul>
-                </nav>
+                <Link to="/login" className="page-header__join-btn">
+                    <span className="page-header__join-btn-text">Войти</span>
+                </Link>
             </div>
         </header>
     )
 }
+
 export default Header;
