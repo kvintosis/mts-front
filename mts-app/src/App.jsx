@@ -8,7 +8,7 @@ function App() {
     return (
         <Router>
             <Header />
-            <div style={{ paddingTop: '147px' }}>
+            <div>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/redactor" element={<Redactor />} />
