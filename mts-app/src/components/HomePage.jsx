@@ -13,16 +13,16 @@ function HomePage() {
 
     return (
         <div className="home">
+            <h1>Конвертировать изображения в PDF</h1>
+            <h2>что-то написано ....</h2>
+
+            <div className="home__features">
+                <span className="feature-badge">✓ Быстро </span>
+                <span className="feature-badge">✓ Онлайн </span>
+                <span className="feature-badge">✓ Безопасно </span>
+            </div>
+
             <div className="home__container">
-                <h1>Конвертировать изображения в PDF</h1>
-                <h2>что-то написано ....</h2>
-
-                <div className="home__features">
-                    <span className="feature-badge">✓ Быстро </span>
-                    <span className="feature-badge">✓ Онлайн </span>
-                    <span className="feature-badge">✓ Безопасно </span>
-                </div>
-
                 <div className="home__form">
 
                         <div className="home__btn-container">
