@@ -12,9 +12,9 @@ function Header() {
                     <span>logotip</span>
                 </div>
 
-                <Link to="/login" className="page-header__join-btn">
+                {/* <Link to="/login" className="page-header__join-btn">
                     <span className="page-header__join-btn-text">Войти</span>
-                </Link>
+                </Link> */}
             </div>
         </header>
     )
