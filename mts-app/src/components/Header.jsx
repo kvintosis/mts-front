@@ -1,6 +1,9 @@
 
 
 import React from 'react';
+import Logo from '../assets/svg-sprite/logo.svg';
+import {Link} from "react-router-dom";
+
 
 
 function Header() {
@@ -9,12 +12,18 @@ function Header() {
             <div className="page-header__container">
 
                 <div className="page-header__logo">
-                    <span>logotip</span>
+                    <Link to="/">
+                        <img
+                            src={Logo}
+                            alt="Логотип"
+                            className="page-header__logo-svg"
+                        />
+                    </Link>
                 </div>
 
-                <Link to="/login" className="page-header__join-btn">
-                    <span className="page-header__join-btn-text">Войти</span>
-                </Link>
+                {/*<Link to="/login" className="page-header__join-btn">*/}
+                {/*    <span className="page-header__join-btn-text">Войти</span>*/}
+                {/*</Link>*/}
             </div>
         </header>
     )
