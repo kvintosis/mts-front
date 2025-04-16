@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -60,6 +61,13 @@ function Login() {
                 {error && <p className="login__error-message">{error}</p>}
                 <button type="submit" className="login__button">Войти</button>
             </form>
+            <div className="login__register-link">
+                <p>Нет аккаунта?</p>
+                <Link to="/register" className="register__button">Зарегистрироваться</Link>
+            </div>
+            <div className="register__back-link">
+                <Link to="/" className="register__back-button">Назад</Link>
+            </div>
         </div>
     );
 }
