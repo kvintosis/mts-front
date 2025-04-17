@@ -63,26 +63,26 @@ function Login() {
             <h2>Вход</h2>
             <form onSubmit={handleSubmit} className="login__form">
                 <div className="login__form-group">
-                    <label htmlFor="email">Email:</label>
                     <input
                         type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder=" "
+                        placeholder=""
                         required 
                         />
+                    <label htmlFor="email">Email:</label>
                 </div>
                 <div className="login__form-group">
-                    <label htmlFor="password">Пароль:</label>
                     <input
                     type="password"
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder=" "
+                    placeholder=""
                     required
                         />
+                    <label htmlFor="password">Пароль:</label>
                 </div>
                 {error && <p className="login__error-message">{error}</p>}
                 <button type="submit" className="login__button">Войти</button>
