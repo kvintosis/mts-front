@@ -1,49 +1,53 @@
+html, body {
+  height: auto; /* Убедитесь, что высота не ограничена */
+  overflow: auto; /* Включаем прокрутку */
+}
 .home-wrapper {
-  height: 100%;
   min-height: 100vh;
-  overflow-y: auto;
+  overflow-y: auto; /* Разрешает вертикальную прокрутку */
+  width: 100%;
 }
 
-
 .home {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100%;
+  min-height: auto;
   background-color: @white1;
   padding-top: 147px;
   box-sizing: border-box;
-
+  padding-bottom: 40px;
+  width: 100%;
 
   &__container {
-    width: 1040px;
-    height: 180px;
+    width: 100%;
+    max-width: 1040px;
+    height: auto;
+    min-height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
-
     background: @pearl url('../../assets/images/fon.png') no-repeat center center;
     background-size: cover;
     position: relative;
     overflow: hidden;
-
     border-radius: 20px;
-    padding: 0;
+    padding: 20px;
     margin: 20px auto;
-
     z-index: 1;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-
   }
 
   &__btn-container {
     display: flex;
     justify-content: center;
     gap: 20px;
-
   }
+
   &__btn {
+    cursor: pointer;
     width: 190px;
     height: 40px;
     background: @red;
@@ -60,10 +64,14 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
     &:hover {
-      background: @gray;
+      background: @white1;
+      box-shadow: 0 10px 20px rgba(43, 98, 165, 0.53),
+      0 6px 6px rgba(17, 53, 95, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       transform: translateY(-1px);
+      color: @red;
+      font-family: @bold;
     }
-
   }
 
   &__features {
@@ -71,107 +79,109 @@
     flex-direction: row;
     max-width: 600px;
     gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
   .feature-badge {
     font-family: @bold;
 
     &:not(:last-child) {
-      margin-right: 16px; // Отступ только справа для всех кроме последнего
+      margin-right: 16px;
     }
   }
 
   h1 {
     font-family: @bold;
-    font-size: 3.0rem; // 40px
+    font-size: 3.0rem;
     font-weight: 700;
     color: #333;
     margin-bottom: 1rem;
     text-align: center;
     line-height: 1.2;
+    width: 100%;
 
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
 
-  @media (max-width: 768px) {
-    font-size: 2rem; // 32px
+    @media (max-width: 480px) {
+      font-size: 1.75rem;
+    }
   }
-
-  @media (max-width: 480px) {
-    font-size: 1.75rem; // 28px
-  }
-}
 
   h2 {
     font-family: @medium;
-    font-size: 1.25rem; // 20px
+    font-size: 1.25rem;
     font-weight: 400;
     color: #666;
     margin-bottom: 2rem;
     text-align: center;
     line-height: 1.4;
-
-
-
-
-
+    width: 100%;
 
     @media (max-width: 480px) {
-      font-size: 1.1rem; // 17.6px
+      font-size: 1.1rem;
       margin-bottom: 1.5rem;
     }
   }
-
-
 }
-
 
 
 .home__container-info-block {
   width: 100%;
-  max-width: 1200px; /* Максимальная ширина блока */
-  margin: 0 auto; /* Центрирование блока */
-  padding: 2rem; /* Внутренние отступы */
-  background-color: transparent; /* Белый фон */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: transparent;
 
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 }
 
-/* Заголовок "Информация" */
 .home__info {
-  color: #231F20; /* Цвет текста (черный) */
-  font-weight: 700; /* Жирное начертание */
-  margin-bottom: 1.5rem; /* Отступ снизу */
-  text-align: center; /* Выравнивание по центру */
-  position: relative; /* Для псевдоэлемента */
-}
-
-/* Декоративная линия под заголовком */
-.home__info::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background-color: @red; /* Цвет линии */
-  margin: 0.5rem auto 0; /* Центрирование линии */
-}
-
-/* Контейнер для содержимого информации */
-.home__container-info {
-  display: flex;
-  flex-wrap: wrap; /* Перенос элементов на новую строку */
-  gap: 2rem; /* Расстояние между элементами */
-  justify-content: center; /* Центрирование элементов */
-  align-items: flex-start; /* Выравнивание по верхнему краю */
+  color: @black;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
   width: 100%;
-  max-width: 1200px; /* Максимальная ширина блока */
-  margin: 0 auto; /* Центрирование блока */
-  padding: 2rem; /* Внутренние отступы */
 
+  &::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: @red;
+    margin: 0.5rem auto 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem !important;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.8rem !important;
+  }
+}
+
+.home__container-info {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   background: fade(@white1, 80%) url('../../assets/images/fon.png') no-repeat center center;
   background-size: cover;
   position: relative;
   overflow: hidden;
-
-
-  border-radius: 20px; /* Закругленные углы */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Тень для глубины */
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
   &::before {
     content: '';
@@ -184,33 +194,57 @@
     z-index: 0;
   }
 
-  // Для контента добавьте
   & > * {
     position: relative;
     z-index: 1;
   }
 
-}
-
-/* Адаптивные стили для разных экранов */
-@media (max-width: 768px) {
-  .home__container-info-block {
-    padding: 1.5rem; /* Уменьшаем отступы на мобильных */
-  }
-
-  .home__info {
-    font-size: 2rem !important; /* Уменьшаем размер шрифта */
-  }
-}
-
-@media (max-width: 480px) {
-  .home__container-info {
-    flex-direction: column; /* Вертикальное расположение на маленьких экранах */
+  @media (max-width: 480px) {
+    flex-direction: column;
     gap: 1.5rem;
   }
+  .info-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1282px;
+    margin: 0 auto;
+  }
 
-  .home__info {
-    font-size: 1.8rem !important;
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    width: calc(33.333% - 40px);
+    box-shadow: 0 10px 20px rgba(43, 98, 165, 0.53),
+    0 6px 6px rgba(17, 53, 95, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: @black;
+    font-family: @medium;
+  }
+
+  .card p {
+    font-family: @light;
+    font-size: 16px;
+    line-height: 1.5;
+    color: @black;
+  }
+
+  @media (max-width: 900px) {
+    .card {
+      width: calc(50% - 20px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .card {
+      width: 100%;
+    }
   }
 }
-
