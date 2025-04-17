@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Vector from "../assets/svg-sprite/Vector.svg";
 
 function Profile() {
     const navigate = useNavigate();
@@ -25,7 +26,12 @@ function Profile() {
                         aria-label="Поиск документов"
                         onChange={handleRedirect}
                     />
-                    <button className="search-btn" type="submit" aria-label="Найти"></button>
+                    <button className="search-btn" type="submit" aria-label="Найти">
+                        <img
+                            src={Vector}
+                            alt="Поиск"
+                        />
+                    </button>
                 </div>
             </div>
             <div className="profile__file">
