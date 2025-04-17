@@ -7,14 +7,26 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [middleName, setMiddleName] = useState('');
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             setError('Пароли не совпадают');
             return;
+        }
+
+        const requestBody = {
+            email,
+            password,
+            firstName,
+            lastName,
+        };
+
+        if (middleName.trim()) {
+            requestBody.middleName = middleName;
         }
 
         try {
@@ -23,7 +35,7 @@ function Register() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password, firstName, lastName }),
+                body: JSON.stringify(requestBody),
             });
 
             if (response.ok) {
@@ -35,7 +47,7 @@ function Register() {
                 const errorData = await response.json();
                 setError(errorData.message || 'Ошибка регистрации');
             }
-        } catch (err){
+        } catch (err) {
             console.error('Ошибка: ', err);
             setError('Не удалось подключиться к серверу');
         }
@@ -62,6 +74,15 @@ function Register() {
                         id="lastName"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)} 
+                    />
+                </div>
+                <div className="register__form-group">
+                    <label htmlFor="middleName">Отчество:</label>
+                    <input 
+                        type="middleName"
+                        id="middleName"
+                        value={middleName}
+                        onChange={(e) => setMiddleName(e.target.value)} 
                     />
                 </div>
                 <div className="register__form-group">

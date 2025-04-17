@@ -1,5 +1,25 @@
 import React, { useState } from "react";
+import LogoWh from '../assets/svg-sprite/LogoWh.svg';
 import {Link} from "react-router-dom";
+
+
+function LoginHeader() {
+    return (
+        <header className="login-header">
+        <div className="login-header__container">
+        <div className="login-header__logo">
+            <Link to="/">
+                <img
+                src={LogoWh}
+                alt="Логотип"
+                className="login-header__logo-svg"
+                />
+            </Link>
+        </div>
+        </div>
+        </header>
+    );
+}
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -35,6 +55,10 @@ function Login() {
     };
 
     return(
+        <>
+        <div className="login">
+            <LoginHeader />
+        <div className="login__body">
         <div className="login__container">
             <h2>Вход</h2>
             <form onSubmit={handleSubmit} className="login__form">
@@ -45,6 +69,7 @@ function Login() {
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        placeholder=" "
                         required 
                         />
                 </div>
@@ -54,7 +79,8 @@ function Login() {
                     type="password"
                     id="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)} 
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder=" "
                     required
                         />
                 </div>
@@ -63,12 +89,15 @@ function Login() {
             </form>
             <div className="login__register-link">
                 <p>Нет аккаунта?</p>
-                <Link to="/register" className="register__button">Зарегистрироваться</Link>
+                <Link to="/register" className="register__button">Создать аккаунт</Link>
             </div>
             <div className="register__back-link">
                 <Link to="/" className="register__back-button">Назад</Link>
             </div>
         </div>
+        </div>
+        </div>
+        </>
     );
 }
 

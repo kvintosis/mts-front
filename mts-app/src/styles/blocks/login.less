@@ -1,0 +1,109 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+.login {
+    height: 100vh;
+    background: linear-gradient(135deg, @purple, @black);
+    display: flex;
+    flex-direction: column;
+
+    &-header {
+        color: @white;
+        padding: 20px;
+    }
+
+    &__body {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        font-family: @regular;
+        align-items: center;
+        color: @white;
+    }
+&__container {
+    background: none;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+&__form-group {
+    position: relative;
+    margin-bottom: 20px;
+
+    label {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: @gray;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    input {
+        width: 100%;
+        padding: 5px 0;
+        border: none;
+        border-bottom: 1px solid @gray;
+        background: transparent;
+        color: @white;
+        font-size: 16px;
+        outline: none;
+
+        &:focus {
+            border-bottom-color: @purple;
+        }
+
+        &:focus + label,
+        &:not(:placeholder-shown) + label {
+            top: -20px; // Перемещаем текст вверх
+            font-size: 12px; // Уменьшаем размер текста
+            color: @purple; // Меняем цвет текста
+        }
+    }
+
+    input::placeholder {
+        color: transparent; // Прячем placeholder
+    }
+}
+
+&__button {
+    width: 100%;
+    padding: 12px;
+    background: @purple;
+    color: @white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+&__button:hover {
+    background: lighten(@purple, 10%);
+}
+
+&__register-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: @white;
+}
+
+&__register-link a {
+    color: @purple;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+&__register-link a:hover {
+    text-decoration: underline;
+}
+}

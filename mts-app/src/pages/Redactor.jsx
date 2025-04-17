@@ -95,7 +95,6 @@ function Redactor() {
                                 />
                         </div>
                     </div>
-                    
                     </div>
             )}
     </>
