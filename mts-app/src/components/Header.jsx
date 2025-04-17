@@ -22,7 +22,7 @@ function Header() {
                 </div>
 
                 <Link to="/login" className="page-header__join-btn">
-                   <span className="page-header__join-btn-text">Войти</span>
+                    <span className="page-header__join-btn-text">Войти</span>
                 </Link>
             </div>
         </header>
