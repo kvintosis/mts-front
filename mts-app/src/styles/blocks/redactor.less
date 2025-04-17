@@ -36,6 +36,30 @@
         }
     }
 
+    &__save-btn{
+            margin-left:auto;
+            width: 100px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 7px;
+            background-color: @red;
+            color: @white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+
+            &:hover {
+                background-color: darken(@red, 10%);
+                transform: scale(1.1);
+            }
+
+            &.active {
+                background-color: darken(@red, 10%);
+                transform: none;
+            }
+    }
+
     &__view-block,
     &__edit-block,
     &__split-block {

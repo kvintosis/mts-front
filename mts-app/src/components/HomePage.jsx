@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
     const [file, setFile] = useState(null);
+    const [fileId, setFileId] = useState(null); // Сохраняем ID или URL файла
     const navigate = useNavigate();
 
     const handleFileChange = async (e) => {
@@ -22,6 +23,7 @@ function HomePage() {
                 if (response.ok) {
                     const result = await response.json();
                     console.log('Файл успешно отправлен:', result);
+                    setFileId(result.fileId); // Сохраняем ID или URL файла
                 } else {
                     console.error('Ошибка при отправке файла:', response.statusText);
                 }
@@ -33,10 +35,22 @@ function HomePage() {
         }
     };
 
-    const handleConvert = () => {
-        if (file) {
-            console.log('Файл для конвертации:', file);
-            navigate('/redactor'); 
+    const handleConvert = async () => {
+        if (fileId) {
+            try {
+                const response = await fetch(`api/files/${fileId}`); // Получаем файл с сервера
+                if (response.ok) {
+                    const fileBlob = await response.blob();
+                    console.log('Файл успешно получен:', fileBlob);
+                    navigate('/redactor', { state: { fileBlob } }); // Передаем файл в редактор
+                } else {
+                    console.error('Ошибка при получении файла:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Ошибка сети:', error);
+            }
+        } else {
+            alert('Файл не найден. Пожалуйста, загрузите файл.');
         }
     };
 
