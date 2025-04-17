@@ -21,9 +21,9 @@ function Header() {
                     </Link>
                 </div>
 
-                {/*<Link to="/login" className="page-header__join-btn">*/}
-                {/*    <span className="page-header__join-btn-text">Войти</span>*/}
-                {/*</Link>*/}
+                <Link to="/login" className="page-header__join-btn">
+                    <span className="page-header__join-btn-text">Войти</span>
+                </Link>
             </div>
         </header>
     )

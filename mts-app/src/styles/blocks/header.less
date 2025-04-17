@@ -30,6 +30,45 @@
       width: auto;
     }
   }
+  &__join-btn {
+    border: none;
+    border-radius: 20px;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    text-decoration: none;
+    width: 80px;
+    height: 50px;
+    background-color: @gray;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    /*для эффекта при наведении на кнопку*/
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+
+
+    &:hover {
+      transform: scale(1.1);
+      background-color: @purple;
+      box-shadow: 0 4px 8px rgba(94, 203, 233, 0.2);
+
+      &:hover &__join-btn-text {
+        color: @white;
+      }
+    }
+
+  }
+
+
+  &__join-btn-text {
+    color: @black;
+    font-family: @medium;
+    font-size: 12px;
+    transition: color 0.3s;
+
+  }
 
 }
