@@ -21,7 +21,7 @@ function LoginHeader() {
     );
 }
 
-function Login() {
+function Login({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -30,7 +30,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await fetch('', {
+            const response = await fetch('api', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,6 +43,8 @@ function Login() {
             console.log('Успешный вход:', data);
 
             localStorage.setItem('token', data.token);
+            setIsAuthenticated(true);
+            navigate('/profile');
             alert('Вы успешно вошли!');
         } else {
             const errorData = await response.json();

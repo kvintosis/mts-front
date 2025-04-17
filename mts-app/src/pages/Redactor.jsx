@@ -44,7 +44,7 @@ function Redactor() {
 
             {viewMode === 'view' && (
                 <div className="redactor__view-block">
-                    <Worker workerUrl={`https://unpkg.com/pdfjs-dist@2.16.105/build/pdf.worker.min.js`}>
+                    <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js`}>
                         <Viewer fileUrl={samplePdf} />
                     </Worker>
                 </div>
@@ -85,7 +85,7 @@ function Redactor() {
             {viewMode === 'split' && (
                 <div className="redactor__split-block">
                     <div className="redactor__nonedit">
-                        <Worker workerUrl={`https://unpkg.com/pdfjs-dist@2.16.105/build/pdf.worker.min.js`}>
+                    <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js`}>
                             <Viewer fileUrl={samplePdf} />
                         </Worker>
                     </div>
