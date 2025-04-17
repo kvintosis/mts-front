@@ -14,22 +14,63 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: @pearl;
+
+    background: @pearl url('../../assets/images/fon.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+
     border-radius: 20px;
     padding: 0;
     box-shadow: none;
     margin: 20px auto;
     position: relative;
     z-index: 1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  }
+
+  &__btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+  }
+  &__btn {
+    width: 190px;
+    height: 40px;
+    background: @red;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: @white;
+    font-family: @medium;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background: @gray;
+      transform: translateY(-1px);
+    }
+
   }
 
   &__features {
     display: flex;
     flex-direction: row;
     max-width: 600px;
+    gap: 16px;
   }
   .feature-badge {
     font-family: @bold;
+
+    &:not(:last-child) {
+      margin-right: 16px; // Отступ только справа для всех кроме последнего
+    }
   }
 
   h1 {
@@ -60,11 +101,52 @@
     text-align: center;
     line-height: 1.4;
 
+
+
+
+
+
     @media (max-width: 480px) {
       font-size: 1.1rem; // 17.6px
       margin-bottom: 1.5rem;
     }
   }
+
+//информация
+  &__container-info {
+
+    width: 1110px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: @purple url('../../assets/images/fon.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: none;
+    margin: 20px auto;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: -1;
+      border-radius: 20px;
+    }
+  }
+
 
 }
 
