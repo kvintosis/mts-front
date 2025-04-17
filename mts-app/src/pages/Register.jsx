@@ -26,7 +26,9 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [middleName, setMiddleName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [tg_id, setTg_id] = useState('');
+
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
@@ -44,8 +46,8 @@ function Register() {
             lastName,
         };
 
-        if (middleName.trim()) {
-            requestBody.middleName = middleName;
+        if (surname.trim()) {
+            requestBody.surname = surname;
         }
 
         try {
@@ -103,14 +105,25 @@ function Register() {
                 </div>
                 <div className="register__form-group">
                     <input 
-                        type="middleName"
-                        id="middleName"
-                        value={middleName}
-                        onChange={(e) => setMiddleName(e.target.value)}
+                        type="surname"
+                        id="surname"
+                        value={surname}
+                        onChange={(e) => setSurname(e.target.value)}
                         placeholder=""
                         required
                     />
-                    <label htmlFor="middleName">Отчество:</label>
+                    <label htmlFor="surname">Отчество:</label>
+                </div>
+                <div className="register__form-group">
+                    <input 
+                        type="tg_id"
+                        id="tg_id"
+                        value={tg_id}
+                        onChange={(e) => setTg_id(e.target.value)}
+                        placeholder=""
+                        required
+                    />
+                    <label htmlFor="tg_id">Телеграм id:</label>
                 </div>
                 <div className="register__form-group">
                     <input
