@@ -1,5 +1,24 @@
 import React, { useState } from "react";
+import LogoWh from '../assets/svg-sprite/LogoWh.svg';
 import {Link} from "react-router-dom";
+
+function RegisterHeader() {
+    return (
+        <header className="login-header">
+        <div className="login-header__container">
+        <div className="login-header__logo">
+            <Link to="/">
+                <img
+                src={LogoWh}
+                alt="Логотип"
+                className="login-header__logo-svg"
+                />
+            </Link>
+        </div>
+        </div>
+        </header>
+    );
+}
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -54,66 +73,77 @@ function Register() {
     };
 
     return (
+        <div className="register">
+            <RegisterHeader/>
+        <div className="register__body">    
         <div className="register__container">
-            <h2 className="register__text">Регистрация</h2>
+            <h2>Регистрация</h2>
             <form onSubmit={handleSubmit} className="register__form">
                 <div className="register__form-group">
-                    <label htmlFor="firstName">Имя: </label>
                     <input
                         type="text" 
                         id="firstName"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
+                        placeholder=""
                         required
                     />
+                    <label htmlFor="firstName">Имя:</label>
                 </div>
                 <div className="register__form-group">
-                    <label htmlFor="lastName">Фамилия:</label>
                     <input 
                         type="lastName"
                         id="lastName"
                         value={lastName}
-                        onChange={(e) => setLastName(e.target.value)} 
+                        onChange={(e) => setLastName(e.target.value)}
+                        placeholder=""
+                        required
                     />
+                    <label htmlFor="lastName">Фамилия:</label>
                 </div>
                 <div className="register__form-group">
-                    <label htmlFor="middleName">Отчество:</label>
                     <input 
                         type="middleName"
                         id="middleName"
                         value={middleName}
-                        onChange={(e) => setMiddleName(e.target.value)} 
+                        onChange={(e) => setMiddleName(e.target.value)}
+                        placeholder=""
+                        required
                     />
+                    <label htmlFor="middleName">Отчество:</label>
                 </div>
                 <div className="register__form-group">
-                    <label htmlFor="email">Почта:</label>
                     <input
                         type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        placeholder=""
                         required 
                     />
+                    <label htmlFor="email">Почта:</label>
                 </div>
                 <div className="register__form-group">
-                    <label htmlFor="password">Пароль:</label>
                     <input
                         type="password"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        placeholder=""
                         required 
                     />
+                    <label htmlFor="password">Пароль:</label>
                 </div>
                 <div className="register__form-group">
-                    <label htmlFor="confirmPassword">Подтвердите пароль:</label>
                     <input
                         type="password"
                         id="confirmPassword"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder=""
                         required
                     />
+                    <label htmlFor="confirmPassword">Подтвердите пароль:</label>
                 </div>
                 {error && <p className="register__error-message">{error}</p>}
                 <button type="submit" className="register__button">Зарегистрироваться</button>
@@ -121,6 +151,8 @@ function Register() {
             <div className="register__back-link">
                 <Link to="/login" className="register__back-button">Назад</Link>
             </div>
+        </div>
+        </div>
         </div>
     );
 }

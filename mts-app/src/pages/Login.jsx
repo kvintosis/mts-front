@@ -83,13 +83,14 @@ function Login() {
                     required
                         />
                     <label htmlFor="password">Пароль:</label>
+
                 </div>
                 {error && <p className="login__error-message">{error}</p>}
                 <button type="submit" className="login__button">Войти</button>
             </form>
             <div className="login__register-link">
                 <p>Нет аккаунта?</p>
-                <Link to="/register" className="register__button">Создать аккаунт</Link>
+                <Link to="/register" className="login__register__button">Создать аккаунт</Link>
             </div>
             <div className="register__back-link">
                 <Link to="/" className="register__back-button">Назад</Link>
