@@ -42,8 +42,11 @@ html, body {
 
   &__btn-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
+    margin-top: 20px;
+    margin-left: 15px;
   }
 
   &__btn {
@@ -166,6 +169,33 @@ html, body {
   }
 }
 
+.home__file-info {
+  position: relative;
+  font-family: @regular;
+  margin-bottom: 20px; 
+  padding: 10px 15px;
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+  max-width: 300px; 
+  word-wrap: break-word;
+  z-index: 10;
+
+  p {
+      margin: 5px 0;
+      font-family: @medium;
+  }
+
+  strong {
+      font-weight: bold;
+      color: #555;
+  }
+}
+
 .home__container-info {
   padding: 2rem 1rem;
   display: flex;
@@ -211,6 +241,7 @@ html, body {
     max-width: 1282px;
     margin: 0 auto;
   }
+  
 
   .card {
     background: white;
