@@ -35,6 +35,8 @@ function Login() {
     };
 
     return(
+        <div className="login">
+        <div className="login__body">
         <div className="login__container">
             <h2>Вход</h2>
             <form onSubmit={handleSubmit} className="login__form">
@@ -63,11 +65,13 @@ function Login() {
             </form>
             <div className="login__register-link">
                 <p>Нет аккаунта?</p>
-                <Link to="/register" className="register__button">Зарегистрироваться</Link>
+                <Link to="/register" className="register__button">Создать аккаунт</Link>
             </div>
             <div className="register__back-link">
                 <Link to="/" className="register__back-button">Назад</Link>
             </div>
+        </div>
+        </div>
         </div>
     );
 }
