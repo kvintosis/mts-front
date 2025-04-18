@@ -1,0 +1,63 @@
+.page-header-profile {
+
+  text-decoration: none;
+  font-family: @medium;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  &__btn {
+    width: 100px;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    background-color: transparent;
+    padding: 0;
+
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    margin: 15px 0 0 0;
+
+    &:hover {
+      transform: scale(1.1);
+      background-color: @gray;
+      box-shadow: 0 3px 10px rgba(43, 98, 165, 0.53),
+      0 1px 1px rgba(17, 53, 95, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.1s ease;
+
+    }
+
+  }
+
+  &__username {
+    margin-top: auto;
+
+    border-radius: 20px;
+
+  }
+
+
+  &__btn-text {
+    color: @black;
+    font-family: @medium;
+    font-size: 13px;
+    transition: color 0.3s;
+
+  }
+
+
+
+  }
+.error-message{
+  color: @red;
+  font-family: @medium;
+}

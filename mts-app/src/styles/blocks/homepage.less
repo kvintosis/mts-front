@@ -241,41 +241,109 @@ html, body {
     max-width: 1282px;
     margin: 0 auto;
   }
-  
+
 
   .card {
     background: white;
     border-radius: 20px;
-    padding: 30px;
+    padding: 25px;
     width: calc(33.333% - 40px);
-    box-shadow: 0 10px 20px rgba(43, 98, 165, 0.53),
-    0 6px 6px rgba(17, 53, 95, 0.35);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    box-shadow: 0 10px 20px rgba(43, 98, 165, 0.15),
+    0 6px 6px rgba(17, 53, 95, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 
-  .card h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: @black;
-    font-family: @medium;
-  }
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(43, 98, 165, 0.2),
+      0 10px 10px rgba(17, 53, 95, 0.15);
+    }
 
-  .card p {
-    font-family: @light;
-    font-size: 16px;
-    line-height: 1.5;
-    color: @black;
-  }
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: @black;
+      font-family: @bold;
+      position: relative;
+      padding-bottom: 10px;
 
-  @media (max-width: 900px) {
-    .card {
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: @red;
+      }
+    }
+
+    p {
+      font-family: @regular;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 0;
+    }
+
+    // Иконка для карточки (опционально)
+    &::before {
+      content: '✓';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: @red;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    @media (max-width: 1024px) {
+      width: calc(50% - 30px);
+      min-height: 280px;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
       width: calc(50% - 20px);
+      min-height: auto;
+
+      h3 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
     }
+
+    @media (max-width: 600px) {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      padding: 18px;
+
+      h3 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+    }
+
   }
 
-  @media (max-width: 600px) {
-    .card {
-      width: 100%;
-    }
-  }
 }

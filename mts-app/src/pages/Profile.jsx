@@ -129,7 +129,7 @@ function Profile() {
     };
 
     return (
-        <div className="profile" style={{ paddingTop: '147px' }}>
+        <div className="profile" style={{paddingTop: '147px'}}>
             <div className="profile__poisk">
                 <h1>Поиск</h1>
 
@@ -143,7 +143,7 @@ function Profile() {
                         onChange={handleSearchChange}
                     />
                     <button className="search-btn" type="submit" aria-label="Найти">
-                        <img src={Vector} alt="Поиск" />
+                        <img src={Vector} alt="Поиск"/>
                     </button>
                 </form>
 
@@ -172,36 +172,7 @@ function Profile() {
                     </div>
                 )}
             </div>
-
-            <div className="profile__file">
-                <div className="home__btn-container">
-                    {!file ? (
-                        <>
-                            <label className="profile__file-case-btn">
-                                Добавить файл
-                                <input
-                                    type="file"
-                                    accept="application/pdf"
-                                    onChange={handleFileChange}
-                                    style={{ display: 'none' }}
-                                />
-                            </label>
-                        </>
-                    ) : (
-                        <>
-                            <div className="home__file-info">
-                                <p><strong>Имя файла:</strong> {file.name}</p>
-                                <p><strong>Размер файла:</strong> {(file.size / 1024).toFixed(2)} KB</p>
-                            </div>
-
-                            <button className="home__btn" onClick={handleConvert}>
-                                Конвертировать
-                            </button>
-                        </>
-                    )}
-                </div>
-            </div>
-
+            <hr className="line"/>
             <div className="profile__file-case">
                 <button className="profile__file-case-btn" onClick={handleRedirect}>
                     Редактировать
