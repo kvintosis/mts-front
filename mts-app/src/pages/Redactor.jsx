@@ -14,7 +14,7 @@ function Redactor() {
         const fetchFileData = async () => {
             try {
                 // Получаем исходный PDF
-                const pdfResponse = await fetch('https://your-api-endpoint.com/get-pdf-file');
+                const pdfResponse = await fetch('');
                 if (pdfResponse.ok) {
                     const pdfBlob = await pdfResponse.blob();
                     const pdfBlobUrl = URL.createObjectURL(pdfBlob);

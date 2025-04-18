@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LogoWh from '../assets/svg-sprite/LogoWh.svg';
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function LoginHeader() {
@@ -25,24 +25,28 @@ function Login({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('api', {
+            const formData = new URLSearchParams();
+            formData.append('username', email); 
+            formData.append('password', password);
+            const response = await fetch('http://127.0.0.1:8000/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify({ email, password }),
+                body: formData,
         });
 
         if (response.ok){
             const data = await response.json();
             console.log('Успешный вход:', data);
 
-            localStorage.setItem('token', data.token);
+            localStorage.setItem('access_token', data.access_token);
             setIsAuthenticated(true);
             navigate('/profile');
             alert('Вы успешно вошли!');

@@ -42,16 +42,15 @@ function Register() {
         const requestBody = {
             email,
             password,
-            firstName,
-            lastName,
+            first_name: firstName,  // Изменено на snake_case
+            last_name: lastName,    // Изменено на snake_case
+            surname,
+            tg_id,
+            disabled: false         // Добавлено обязательное поле
         };
 
-        if (surname.trim()) {
-            requestBody.surname = surname;
-        }
-
         try {
-            const response = await fetch('', {
+            const response = await fetch('http://127.0.0.1:8000/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -8,14 +8,14 @@ function HomePage() {
 
     const handleFileChange = async (e) => {
         const selectedFile = e.target.files[0];
-        if (selectedFile && selectedFile.type === 'application/pdf') {
+        if (selectedFile && selectedFile.type === 'multipart/form-data') {
             setFile(selectedFile);
 
             const formData = new FormData();
             formData.append('file', selectedFile);
 
             try {
-                const response = await fetch('api', {
+                const response = await fetch('http://127.0.0.1:8000/upload-pdf', {
                     method: 'POST',
                     body: formData,
                 });
