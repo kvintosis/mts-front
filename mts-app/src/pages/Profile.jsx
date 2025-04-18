@@ -1,15 +1,10 @@
-
-
-
-
-
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Vector from "../assets/svg-sprite/Vector.svg";
 
 function Profile() {
     const navigate = useNavigate();
-    const [searchQuery, setSearchQuery] = useState(''); //поиск заппрос
+    const [searchQuery, setSearchQuery] = useState('');
     const [file, setFile] = useState(null);
     const [fileId, setFileId] = useState(null);
     const [serverFiles, setServerFiles] = useState([]);
@@ -20,7 +15,6 @@ function Profile() {
         const fetchFiles = async () => {
             setIsLoading(true);
             setError(null);
-
 
             try {
                 const response = await fetch('https://api');
@@ -39,7 +33,8 @@ function Profile() {
 
         fetchFiles();
     }, []);
-//Фильтр поиск запроса
+
+    // Фильтр поиска
     const filteredFiles = serverFiles.filter(serverFile =>
         serverFile.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -61,7 +56,7 @@ function Profile() {
                 if (response.ok) {
                     const result = await response.json();
                     console.log('Файл успешно отправлен:', result);
-                    setFileId(result.fileId); // Сохраняем ID или URL файла
+                    setFileId(result.fileId);
                 } else {
                     console.error('Ошибка при отправке файла:', response.statusText);
                 }
@@ -72,14 +67,15 @@ function Profile() {
             alert('Пожалуйста, выберите PDF-файл.');
         }
     };
+
     const handleConvert = async () => {
         if (fileId) {
             try {
-                const response = await fetch(`api/files/${fileId}`); // Получаем файл с сервера
+                const response = await fetch(`api/files/${fileId}`);
                 if (response.ok) {
                     const fileBlob = await response.blob();
                     console.log('Файл успешно получен:', fileBlob);
-                    navigate('/redactor', { state: { fileBlob } }); // Передаем файл в редактор
+                    navigate('/redactor', { state: { fileBlob } });
                 } else {
                     console.error('Ошибка при получении файла:', response.statusText);
                 }
@@ -91,15 +87,40 @@ function Profile() {
         }
     };
 
+    // Выбор файлов из рез поиска
+    const handleFileSelect = async (selectedFile) => {
+        try {
+            // Получаем файл с сервера
+            const response = await fetch(`api/files/${selectedFile.id}`);
 
+            if (response.ok) {
+                const fileBlob = await response.blob();
+                console.log('Файл успешно получен:', fileBlob);
+
+                // Переходим в редактор с данными файла
+                navigate('/redactor', {
+                    state: {
+                        fileBlob,
+                        fileName: selectedFile.name,
+                        fileId: selectedFile.id
+                    }
+                });
+            } else {
+                console.error('Ошибка при получении файла:', response.statusText);
+                alert('Не удалось загрузить файл');
+            }
+        } catch (error) {
+            console.error('Ошибка сети:', error);
+            alert('Произошла ошибка при загрузке файла');
+        }
+    };
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
     };
 
-
     const handleSearchSubmit = (e) => {
-        e.preventDefault(); //поиск чёт придумать
+        e.preventDefault();
         console.log('Выполнен поиск:', searchQuery);
     };
 
@@ -122,37 +143,69 @@ function Profile() {
                         onChange={handleSearchChange}
                     />
                     <button className="search-btn" type="submit" aria-label="Найти">
-                        <img
-                            src={Vector}
-                            alt="Поиск"
-                        />
+                        <img src={Vector} alt="Поиск" />
                     </button>
-                </form >
-
+                </form>
 
                 {searchQuery && (
-                <div className="search-results">
-                    {filteredFiles.length > 0 ? (
-                        <ul>
-                            {filteredFiles.map(file => (
-                                <li key={file.id}>
-                                    <span>{file.name}</span>
-                                    <button onClick={() => handleFileSelect(file)}>
-                                        Выбрать
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>Ничего не найдено</p>
-                    )}
-                </div>
+                    <div className="search-results">
+                        {isLoading ? (
+                            <p>Загрузка...</p>
+                        ) : error ? (
+
+
+                            <p>ошибка!!!</p>
+                        ) : filteredFiles.length > 0 ? (
+                            <ul>
+                                {filteredFiles.map(file => (
+                                    <li key={file.id}>
+                                        <span>{file.name}</span>
+                                        <button onClick={() => handleFileSelect(file)}>
+                                            Открыть
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>Ничего не найдено</p>
+                        )}
+                    </div>
                 )}
             </div>
+
             <div className="profile__file">
-                <div className="profile__file-case">
-                    <button className="profile__file-case-btn" onClick={handleRedirect}>Редактировать</button>
+                <div className="home__btn-container">
+                    {!file ? (
+                        <>
+                            <label className="profile__file-case-btn">
+                                Добавить файл
+                                <input
+                                    type="file"
+                                    accept="application/pdf"
+                                    onChange={handleFileChange}
+                                    style={{ display: 'none' }}
+                                />
+                            </label>
+                        </>
+                    ) : (
+                        <>
+                            <div className="home__file-info">
+                                <p><strong>Имя файла:</strong> {file.name}</p>
+                                <p><strong>Размер файла:</strong> {(file.size / 1024).toFixed(2)} KB</p>
+                            </div>
+
+                            <button className="home__btn" onClick={handleConvert}>
+                                Конвертировать
+                            </button>
+                        </>
+                    )}
                 </div>
+            </div>
+
+            <div className="profile__file-case">
+                <button className="profile__file-case-btn" onClick={handleRedirect}>
+                    Редактировать
+                </button>
             </div>
         </div>
     );
