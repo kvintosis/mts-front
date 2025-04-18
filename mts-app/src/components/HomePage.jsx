@@ -3,41 +3,26 @@ import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
     const [file, setFile] = useState(null);
-    const [fileId, setFileId] = useState(null); // Сохраняем ID или URL файла
     const navigate = useNavigate();
 
-    const handleFileChange = async (e) => {
+    const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
-        if (selectedFile && selectedFile.type === 'multipart/form-data') {
+        if (selectedFile && selectedFile.type === 'application/pdf') {
             setFile(selectedFile);
 
-            const formData = new FormData();
-            formData.append('file', selectedFile);
-
-            try {
-                const response = await fetch('http://127.0.0.1:8000/upload-pdf', {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log('Файл успешно отправлен:', result);
-                    setFileId(result.fileId); // Сохраняем ID или URL файла
-                } else {
-                    console.error('Ошибка при отправке файла:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Ошибка сети:', error);
-            }
+            const reader = new FileReader();
+            reader.onload = () => {
+                localStorage.setItem('pdfFile', reader.result);
+            };
+            reader.readAsDataURL(selectedFile);
         } else {
             alert('Пожалуйста, выберите PDF-файл.');
         }
     };
 
-    const handleConvert = async () => {
-        if (fileId) {
-            navigate('/redactor', { state: { fileId } }); // Передаём fileId в редактор
+    const handleConvert = () => {
+        if (localStorage.getItem('pdfFile')) {
+            navigate('/redactor');
         } else {
             alert('Файл не загружен. Пожалуйста, загрузите файл.');
         }

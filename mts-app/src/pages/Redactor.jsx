@@ -5,61 +5,28 @@ import { Worker, Viewer } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 
 function Redactor() {
-    const [viewMode, setViewMode] = useState('view'); // По умолчанию режим "Просмотр"
-    const [fileUrl, setFileUrl] = useState(null); // URL исходного PDF
-    const [htmlContent, setHtmlContent] = useState(''); // HTML-версия файла
-    const [saveStatus, setSaveStatus] = useState('');
+    const [viewMode, setViewMode] = useState('view'); // Добавлено состояние для режима отображения
+    const [fileUrl, setFileUrl] = useState(null);
+    const [htmlContent, setHtmlContent] = useState('<p>Добро пожаловать в редактор! Начните редактирование здесь.</p>'); // Начальный HTML-контент
 
     useEffect(() => {
-        const fetchFileData = async () => {
-            try {
-                // Получаем исходный PDF
-                const pdfResponse = await fetch('');
-                if (pdfResponse.ok) {
-                    const pdfBlob = await pdfResponse.blob();
-                    const pdfBlobUrl = URL.createObjectURL(pdfBlob);
-                    setFileUrl(pdfBlobUrl);
-                } else {
-                    console.error('Ошибка при получении PDF:', pdfResponse.statusText);
-                }
+        const pdfData = localStorage.getItem('pdfFile');
+        if (pdfData) {
+            setFileUrl(pdfData); // Устанавливаем PDF
+        } else {
+            alert('Файл не найден. Пожалуйста, загрузите файл на главной странице.');
+        }
 
-                // Получаем HTML-версию
-                const htmlResponse = await fetch('https://your-api-endpoint.com/get-html-file');
-                if (htmlResponse.ok) {
-                    const htmlText = await htmlResponse.text();
-                    setHtmlContent(htmlText);
-                } else {
-                    console.error('Ошибка при получении HTML:', htmlResponse.statusText);
-                }
-            } catch (error) {
-                console.error('Ошибка сети:', error);
-            }
-        };
-
-        fetchFileData();
+        // Извлекаем HTML из localStorage, если он есть
+        const savedHtml = localStorage.getItem('htmlFile');
+        if (savedHtml) {
+            setHtmlContent(savedHtml); // Устанавливаем сохранённый HTML
+        }
     }, []);
 
-    const handleSaveHtmlFileToDB = async () => {
-        try {
-            const formData = new FormData();
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            formData.append('file', blob, 'edited-file.html');
-
-            const response = await fetch('https://your-api-endpoint.com/save-html-file', {
-                method: 'POST',
-                body: formData,
-            });
-
-            if (response.ok) {
-                setSaveStatus('Сохранено успешно!');
-            } else {
-                const errorData = await response.text();
-                setSaveStatus(`Ошибка: ${errorData || 'Не удалось сохранить файл'}`);
-            }
-        } catch (error) {
-            console.error('Ошибка при сохранении файла:', error);
-            setSaveStatus('Ошибка при подключении к серверу');
-        }
+    const handleSaveHtmlFileToLocalStorage = () => {
+        localStorage.setItem('htmlFile', htmlContent); // Сохраняем HTML в localStorage
+        alert('HTML успешно сохранён!');
     };
 
     return (
@@ -83,7 +50,7 @@ function Redactor() {
                 >
                     Сплит
                 </button>
-                <button className="redactor__save-btn btn" onClick={handleSaveHtmlFileToDB}>
+                <button className="redactor__save-btn btn" onClick={handleSaveHtmlFileToLocalStorage}>
                     Сохранить
                 </button>
             </div>
@@ -104,10 +71,10 @@ function Redactor() {
                 <div className="redactor__edit-block">
                     <CKEditor
                         editor={ClassicEditor}
-                        data={htmlContent}
+                        data={htmlContent} // Устанавливаем начальный HTML-контент
                         onChange={(event, editor) => {
                             const data = editor.getData();
-                            setHtmlContent(data);
+                            setHtmlContent(data); // Обновляем HTML-контент при изменении
                         }}
                         config={{
                             toolbar: [
@@ -145,10 +112,10 @@ function Redactor() {
                     <div className="redactor__edit-1">
                         <CKEditor
                             editor={ClassicEditor}
-                            data={htmlContent}
+                            data={htmlContent} // Устанавливаем начальный HTML-контент
                             onChange={(event, editor) => {
                                 const data = editor.getData();
-                                setHtmlContent(data);
+                                setHtmlContent(data); // Обновляем HTML-контент при изменении
                             }}
                             config={{
                                 toolbar: [
