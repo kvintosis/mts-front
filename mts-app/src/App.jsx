@@ -15,7 +15,7 @@ function App() {
     return (
         <>
             {!noHeaderRoutes.includes(location.pathname) && (
-                isAuthenticated ? <AuthHeader /> : <Header />)}
+                isAuthenticated ? < AuthHeader /> : <Header />)}
             <div>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
