@@ -37,20 +37,9 @@ function HomePage() {
 
     const handleConvert = async () => {
         if (fileId) {
-            try {
-                const response = await fetch(`api/files/${fileId}`); // Получаем файл с сервера
-                if (response.ok) {
-                    const fileBlob = await response.blob();
-                    console.log('Файл успешно получен:', fileBlob);
-                    navigate('/redactor', { state: { fileBlob } }); // Передаем файл в редактор
-                } else {
-                    console.error('Ошибка при получении файла:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Ошибка сети:', error);
-            }
+            navigate('/redactor', { state: { fileId } }); // Передаём fileId в редактор
         } else {
-            alert('Файл не найден. Пожалуйста, загрузите файл.');
+            alert('Файл не загружен. Пожалуйста, загрузите файл.');
         }
     };
 
